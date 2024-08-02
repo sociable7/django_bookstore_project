@@ -1,0 +1,14 @@
+{% extends '_base.html' %}
+
+{% block page_title %} {{ book.title }} Book Edit {% endblock %}
+
+{% block content %}
+    <form method="POST">
+        {% csrf_token %}
+        <table>
+            {{ form.as_table }}
+        </table>
+        <button type="submit" class="btn btn-primary">Edit</button>
+    </form>
+    <a href="{% url 'book_list' %}">all books</a>
+{% endblock %}
