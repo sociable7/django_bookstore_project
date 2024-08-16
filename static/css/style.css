@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+/*body {*/
+/*    font-family: 'Roboto', sans-serif;*/
+/*}*/
+
+/*footer p {*/
+/*    font-family: 'Roboto', sans-serif; !* Optional: Ensure footer text uses the same font *!*/
+/*}*/
+
+/*.navbar-nav {*/
+/*    margin-left: auto; !* Aligns the nav links to the right in LTR *!*/
+/*}*/
+
+/*.navbar-brand {*/
+/*    display: flex;*/
+/*    align-items: center;*/
+/*}*/
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    line-height: 1.6;
+    background-color: #f8f8f8;
+    color: #333;
+}
+
+.container {
+    max-width: 1200px;
+    margin: auto;
+    padding: 0 20px;
+}
+
+header {
+    background: #444;
+    color: #fff;
+    padding: 20px 0;
+}
+
+header h1 {
+    float: left;
+    font-size: 24px;
+    margin-left: 20px;
+}
+
+nav ul {
+    list-style: none;
+    float: right;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+}
+
+nav ul li a:hover {
+    background-color: #555;
+}
+
+main {
+    padding: 40px 0;
+    background-color: #fff;
+    margin: 20px 0;
+}
+
+.book-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: space-around;
+}
+
+.book-item {
+    background: #fff;
+    padding: 20px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    width: calc(33% - 40px);
+}
+
+.book-item img {
+    width: 100%;
+    height: auto;
+    border-bottom: 1px solid #eee;
+    margin-bottom: 15px;
+}
+
+.book-item h3 {
+    margin: 10px 0;
+    font-size: 18px;
+}
+
+.book-item p {
+    font-size: 14px;
+    margin-bottom: 10px;
+}
+
+.book-item button {
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.book-item button:hover {
+    background-color: #0056b3;
+}
+
+footer {
+    background: #444;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 20px;
+}
+
+@media (max-width: 768px) {
+    .book-item {
+        width: calc(50% - 40px);
+    }
+}
+
+@media (max-width: 480px) {
+    nav ul {
+        float: none;
+        text-align: center;
+    }
+
+    .book-item {
+        width: 100%;
+    }
+}
