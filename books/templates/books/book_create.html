@@ -1,15 +1,170 @@
 {% extends '_base.html' %}
+{% load crispy_forms_filters %}
+{% load crispy_forms_tags %}
 
 {% block page_title %} Create Book {% endblock %}
 
 {% block content %}
-    <h3>Add New Book:</h3>
-    <form method="POST">
-        {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <button type="submit" class="btn btn-primary">Create</button>
-    </form>
-    <a href="{% url 'book_list' %}">all books</a>
+
+    {#        <div class="container mt-4" dir="ltr">#}
+    {#            <div class="row">#}
+    {#                <div class="col-9">#}
+    {#                    <div class="card shadow my-3">#}
+    {#                        <h5 class="card-header bg-success text-light px-5">Form</h5>#}
+    {#                        <div class="px-5 pt-3 pb-5">#}
+    {#                            <form method="POST">#}
+    {#                                <div class="form-group py-2">#}
+    {#                                    <label for="title" class="py-1">Book Title:</label>#}
+    {#                                    <input type="text" id="title" class="form-control" placeholder="Enter the book title"#}
+    {#                                           name="title" required>#}
+    {#                                </div>#}
+    {#                                <div class="form-group py-2">#}
+    {#                                    <label for="description" class="py-1">Book Description:</label>#}
+    {#                                    <textarea id="description" class="form-control" name="text" rows="8"#}
+    {#                                              placeholder="Enter the book description" required></textarea>#}
+    {#                                </div>#}
+    {#                                <button type="submit" class="btn btn-success mt-2" aria-label="Save book information">Save#}
+    {#                                </button>#}
+    {#                            </form>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#                <div class="col-3">#}
+    {#                    <div class="card my-3 shadow">#}
+    {#                        <h5 class="card-header bg-warning text-light">Guide</h5>#}
+    {#                        <div class="card-body">#}
+    {#                            <p class="card-text">#}
+    {#                                Enter the book information in the form on this page, then click the save button.#}
+    {#                            </p>#}
+    {#                        </div>#}
+    {#                    </div>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Enhanced Book Form</title>
+        <!-- Bootstrap CSS -->
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <!-- Custom CSS -->
+        <style>
+            body {
+                background-color: #f0f4f8;
+                font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            }
+
+            .container {
+                max-width: 900px;
+                margin: 40px auto;
+            }
+
+            .card {
+                border: none;
+                border-radius: 15px;
+                overflow: hidden;
+                box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            }
+
+            .card-header {
+                background: linear-gradient(135deg, rgba(174, 97, 174, 0.7), #5778c0);
+                color: #fff;
+                font-size: 1.5rem;
+                text-align: center;
+                padding: 20px;
+                font-weight: bold;
+                letter-spacing: 0.5px;
+            }
+
+            .form-group label {
+                font-weight: 600;
+                color: #333;
+            }
+
+            .form-control {
+                border-radius: 10px;
+                padding: 15px;
+                font-size: 1rem;
+                border: 1px solid #ced4da;
+                box-shadow: none;
+                transition: border-color 0.3s;
+            }
+
+            .form-control:focus {
+                border-color: #6d5efc;
+                box-shadow: 0 0 0 0.2rem rgba(109, 94, 252, 0.25);
+            }
+
+            .btn-success {
+                background-color: rgba(84, 26, 84, 0.7);
+                border-color: rgba(174, 97, 174, 0.7);
+                padding: 12px 30px;
+                font-size: 1rem;
+                border-radius: 10px;
+                transition: background-color 0.3s, border-color 0.3s;
+            }
+
+            .btn-success:hover {
+                background-color: #574bd6;
+                border-color: #574bd6;
+            }
+
+            .guide-card {
+                background-color: #f8fafc;
+            }
+
+            .guide-card .card-header {
+                background-color: #ffc107;
+                color: #000;
+            }
+
+            .guide-card .card-body {
+                padding: 30px;
+            }
+
+            .guide-card .card-text {
+                font-size: 0.95rem;
+                line-height: 1.8;
+                color: #555;
+            }
+        </style>
+    </head>
+    <body>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="card shadow my-3">
+                    <h5 class="card-header">Book Information Form</h5>
+                    <div class="px-5 pt-3 pb-5">
+                        <form method="POST">
+                            {% csrf_token %}
+                            {{ form|crispy }}
+                            <button type="submit" class="btn btn-success mt-2" aria-label="Save book information">Save
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card guide-card my-3 shadow">
+                    <h5 class="card-header">Guide</h5>
+                    <div class="card-body">
+                        <p class="card-text">
+                            Enter the book information in the form on this page, then click the save button. Make sure
+                            to fill in all the fields accurately to ensure a successful submission.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS, Popper.js, and jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+    </body>
+    </html>
+
 {% endblock %}

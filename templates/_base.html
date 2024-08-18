@@ -12,6 +12,9 @@
           integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    {% block styles %}
+
+    {% endblock styles %}
     <title>{% block page_title %}{% endblock page_title %}</title>
 </head>
 <body>
@@ -27,16 +30,24 @@
         </button>
         <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
             <div class="navbar-nav">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-                <a class="nav-link" href="#">Add Book</a>
+                <a class="nav-link active" aria-current="page" href="{% url 'book_list' %}">Home</a>
+                <a class="nav-link" href="{% url 'book_create' %}">Add Book</a>
             </div>
         </div>
-        <div class="mx-2 text-white">Welcome {{ book.username }} | <a class="link-light text-decoration-none" href="#">Logout</a>
+        <div class="mx-2 text-white">
+            {% if user.is_authenticated %}
+                Welcome {{ user.username|capfirst }}
+                <form action="{% url 'logout' %}" method="post">
+                    {% csrf_token %}
+                    <button class="btn btn-info link-light" type="submit">Logout</button>
+                </form>
+            {% else %}
+                <a class="link-light text-decoration-none" href="{% url 'login' %}">Login</a> |
+                <a class="link-light text-decoration-none" href="{% url 'signup' %}">Sign up</a>
+            {% endif %}
         </div>
     </div>
 </nav>
-
-
 <div class="container">
     {% block content %}
 
