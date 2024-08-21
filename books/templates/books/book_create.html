@@ -1,5 +1,7 @@
 {% extends '_base.html' %}
+
 {% load crispy_forms_filters %}
+
 {% load crispy_forms_tags %}
 
 {% block page_title %} Create Book {% endblock %}
@@ -138,7 +140,7 @@
                 <div class="card shadow my-3">
                     <h5 class="card-header">Book Information Form</h5>
                     <div class="px-5 pt-3 pb-5">
-                        <form method="POST">
+                        <form method="POST" enctype="multipart/form-data"> # enctype for when we have an upload section by user
                             {% csrf_token %}
                             {{ form|crispy }}
                             <button type="submit" class="btn btn-success mt-2" aria-label="Save book information">Save

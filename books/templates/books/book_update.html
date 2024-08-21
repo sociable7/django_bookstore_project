@@ -1,14 +1,17 @@
 {% extends '_base.html' %}
 
+{% load crispy_forms_tags %}
+
 {% block page_title %} {{ book.title }} Book Edit {% endblock %}
 
 {% block content %}
-    <form method="POST">
+    <form action="" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <table>
-            {{ form.as_table }}
-        </table>
-        <button type="submit" class="btn btn-primary">Edit</button>
+        {{ form|crispy }}
+        <input type="submit" value="save">
     </form>
+    <br>
     <a href="{% url 'book_list' %}">all books</a>
 {% endblock %}
+
+{#class="btn btn-info link-light"#}
