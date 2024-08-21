@@ -14,8 +14,8 @@
                         <div class="col-md-4">
                             {% if book.cover %}
                                 <img src="{{ book.cover.url }}" alt="{{ book.title }}" class="img-fluid rounded-start"/>
-{#                            {% else %}#}
-{#                                <img src="{% static 'icons/bookk.jpg' %}" class="img-fluid rounded-start"/>#}
+                                {#                            {% else %}#}
+                                {#                                <img src="{% static 'icons/bookk.jpg' %}" class="img-fluid rounded-start"/>#}
                             {% endif %}
                         </div>
                         <div class="col-md-8 h-100">
@@ -36,6 +36,19 @@
             {% endfor %}
         </div>
     </div>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination justify-content-center">
+            {% if page_obj.has_previous %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a></li>
+            {% endif %}
+            <li class="page-item"><a class="page-link" href="#"> {{ page_obj.number }}</a></li>
+            {% if page_obj.has_next %}
+                <li class="page-item"><a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a></li>
+            {% endif %}
+        </ul>
+    </nav>
+
     <footer class="bg-light text-center text-lg-start mt-5">
         <div class="text-center bg-grey">
             <p>Educational Django Course <a class="text-dark" href="https://Bookstore.com/"
