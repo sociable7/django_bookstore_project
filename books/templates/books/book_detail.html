@@ -44,27 +44,13 @@
                 <div class="d-flex justify-content-center">
                     <div class="card shadow my-3 p-5 w-sm-75 w-100">
                         <h2 class="mb-5">Reviews:</h2>
-                        <div class="border-bottom mb-3">
-                            <h5 class="mb-3">Noshin Tokhavi</h5>
-                            <p>Greetings. I wanted to mention a few things. First, I was one of those people who thought
-                                the pleasure of reading a book was holding it in your hands and reading it. But I really
-                                say that Fidibo is doing well in its field. I hope it continues to be successful. Thank
-                                you for the good books you provide, as they are very up-to-date.</p>
-                        </div>
-                        <div class="border-bottom mb-3">
-                            <h5 class="mb-3">Noshin Tokhavi</h5>
-                            <p>Greetings. I wanted to mention a few things. First, I was one of those people who thought
-                                the pleasure of reading a book was holding it in your hands and reading it. But I really
-                                say that Fidibo is doing well in its field. I hope it continues to be successful. Thank
-                                you for the good books you provide, as they are very up-to-date.</p>
-                        </div>
-                        <div>
-                            <h5 class="mb-3">Noshin Tokhavi</h5>
-                            <p>Greetings. I wanted to mention a few things. First, I was one of those people who thought
-                                the pleasure of reading a book was holding it in your hands and reading it. But I really
-                                say that Fidibo is doing well in its field. I hope it continues to be successful. Thank
-                                you for the good books you provide, as they are very up-to-date.</p>
-                        </div>
+                        {% for comment in comments %}
+                            <div class="border-bottom mb-3">
+                                <h5 class="mb-3">{{ comment.user.username }}</h5>
+                                <p>{{ comment.text|linebreaks }}</p>
+                            </div>
+                        {% endfor %}
+
                     </div>
                 </div>
 
