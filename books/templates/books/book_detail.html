@@ -2,6 +2,8 @@
 
 {% load book_tags %}
 
+{% load crispy_forms_tags %}
+
 {% block page_title %} {{ book.title }} List Details {% endblock %}
 
 {% block content %}
@@ -45,12 +47,18 @@
                     <div class="card shadow my-3 p-5 w-sm-75 w-100">
                         <h2 class="mb-5">Reviews:</h2>
                         {% for comment in comments %}
-                            <div class="border-bottom mb-3">
-                                <h5 class="mb-3">{{ comment.user.username }}</h5>
-                                <p>{{ comment.text|linebreaks }}</p>
-                            </div>
+                            {% if comment.is_active %}
+                                <div class="border-bottom mb-3">
+                                    <h5 class="mb-3">{{ comment.user.username }}</h5>
+                                    {% if comment.recommend %}
+                                        <p class="text-muted text-success" style="color: green !important;">Highly recommend this book!</p>
+                                    {% else %}
+                                        <p class="text-muted text-danger" style="color: red !important;">I don't recommend this book.</p>
+                                    {% endif %}
+                                    <p>{{ comment.text|linebreaks }}</p>
+                                </div>
+                            {% endif %}
                         {% endfor %}
-
                     </div>
                 </div>
 
@@ -58,20 +66,9 @@
                     <div class="card shadow my-3 p-5 w-sm-75 w-100">
                         <h3>Submit Your Review:</h3>
                         <form method="POST">
-                            <div class="form-group py-2">
-                                <label class="py-1" for="author_name">Your Name:</label>
-                                <input type="text" class="form-control" placeholder="Ali Alavi" name="author_name">
-                            </div>
-                            <div class="form-group py-2">
-                                <label class="py-1" for="email">Your Email:</label>
-                                <input type="email" class="form-control" placeholder="example@gmail.com" name="email">
-                            </div>
-                            <div class="form-group py-2">
-                                <label class="py-1" for="comment_text">Review Text:</label>
-                                <textarea class="form-control" name="text" rows="3"
-                                          placeholder="Enter your review here."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            {% csrf_token %}
+                            {{ comment_form|crispy }}
+                            <button type="submit" class="btn btn-primary mt-3">Submit</button>
                         </form>
                     </div>
                 </div>
